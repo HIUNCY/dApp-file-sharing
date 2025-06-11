@@ -1,6 +1,6 @@
 import Upload from "./artifacts/contracts/Upload.sol/Upload.json";
 import { useState, useEffect } from "react";
-import { ethers } from "ethers";
+import { BrowserProvider, Contract } from "ethers";
 import FileUpload from "./components/FileUpload";
 import Display from "./components/Display";
 import Modal from "./components/Modal";
@@ -13,13 +13,13 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new BrowserProvider(window.ethereum);
 
     const switchToSepolia = async () => {
         try {
           await window.ethereum.request({
             method: "wallet_switchEthereumChain",
-            params: [{ chainId: "0xaa36a7" }], // Sepolia
+            params: [{ chainId: "0xaa36a7" }],
           });
         } catch (switchError) {
           console.error("Switch error:", switchError);
@@ -37,12 +37,12 @@ function App() {
         });
         await switchToSepolia();
         await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
+        const signer = await provider.getSigner()
         const address = await signer.getAddress();
         setAccount(address);
         let contractAddress = "0x785399Bafdf1A6f41AA040534F86ac1d10B00F51";
 
-        const contract = new ethers.Contract(
+        const contract = new Contract(
           contractAddress,
           Upload.abi,
           signer
