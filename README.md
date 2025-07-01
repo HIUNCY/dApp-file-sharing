@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Arsip Dokumen RT Terdesentralisasi
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Proyek ini adalah sebuah **Aplikasi Terdesentralisasi (dApp)** yang dibangun untuk mengatasi masalah pengarsipan dokumen di lingkungan Rukun Tetangga (RT). Dengan memanfaatkan teknologi blockchain, aplikasi ini bertujuan untuk menciptakan sistem arsip yang aman, transparan, tidak dapat diubah, dan mudah diakses oleh pihak yang berwenang, menggantikan metode konvensional yang rawan kehilangan dan kerusakan data.
 
-## Available Scripts
+## 🚀 Fitur Utama
 
-In the project directory, you can run:
+-   **Unggah Aman**: Unggah dokumen ke sistem penyimpanan terdesentralisasi (IPFS) melalui Pinata dan catat *hash* uniknya di *blockchain*.
+-   **Kepemilikan Terverifikasi**: Setiap arsip terikat pada alamat Ethereum pemiliknya, memastikan hanya pemilik yang dapat mengelola arsip tersebut.
+-   **Kontrol Akses**: Pemilik arsip dapat dengan mudah memberikan dan mencabut hak akses lihat kepada alamat Ethereum lainnya.
+-   **Tampilan Data Dinamis**: Menampilkan daftar arsip dari alamat mana pun (selama memiliki hak akses).
+-   **Pencarian Cepat**: Fitur pencarian instan untuk menyaring dan menemukan dokumen berdasarkan nama file.
+-   **Antarmuka Modern & Responsif**: Dibangun dengan *framework* UI MUI (Material-UI) untuk pengalaman pengguna yang optimal di semua perangkat.
+-   **Notifikasi *Real-time***: Memberikan umpan balik kepada pengguna untuk setiap aksi (unggah, hapus, berbagi) menggunakan notifikasi *toast*.
 
-### `npm start`
+## 🛠️ Tumpukan Teknologi
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+-   **Frontend**:
+    -   [React.js](https://reactjs.org/) - Library utama untuk membangun antarmuka pengguna.
+    -   [MUI (Material-UI)](https://mui.com/) - *Framework* komponen UI untuk desain yang bersih dan responsif.
+    -   [Ethers.js](https://ethers.io/) - Library untuk berinteraksi dengan *blockchain* Ethereum.
+    -   [Axios](https://axios-http.com/) - Untuk melakukan permintaan HTTP ke Pinata.
+    -   [React Toastify](https://fkhadra.github.io/react-toastify/introduction) - Untuk menampilkan notifikasi.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-   **Backend & Blockchain**:
+    -   [Solidity](https://soliditylang.org/) - Bahasa pemrograman untuk menulis *smart contract*.
+    -   [Ethereum](https://ethereum.org/) - *Blockchain* tempat *smart contract* di-*deploy* (misalnya Jaringan Tes Sepolia).
+    -   [Remix](https://remix.ethereum.org/) - Lingkungan pengembangan untuk kompilasi dan *deployment*.
 
-### `npm test`
+-   **Penyimpanan**:
+    -   [IPFS](https://ipfs.tech/) - Protokol penyimpanan file *peer-to-peer*.
+    -   [Pinata](https://pinata.cloud/) - Layanan *pinning* untuk memastikan file tetap ada di IPFS.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ⚙️ Memulai Proyek
 
-### `npm run build`
+Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah berikut:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**1. Klon Repositori**
+```bash
+git clone https://github.com/HIUNCY/dApp-file-sharing
+cd dApp-file-sharing
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**2. Install Dependensi**
+Proyek ini menggunakan npm sebagai manajer paket. Jalankan perintah berikut untuk menginstal semua library yang dibutuhkan.
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**3. Siapkan File Environment**
+Salin file `.env.example` menjadi `.env`.
+```sh
+cp .env.example .env
+```
+Buka file `.env` dan sesuaikan nilainya dengan konfigurasi semua key yang bersifat rahasia.
+```env
+REACT_APP_PINATA_API_KEY="KEY_API_PINATA_ANDA"
+REACT_APP_PINATA_SECRET_API_KEY="SECRET_KEY_PINATA_ANDA"
+REACT_APP_PINATA_JWT="TOKEN_JWT_PINATA_ANDA"
+```
 
-### `npm run eject`
+**4. Konfigurasi Smart Contract**
+- Deploy smart contract ArsipDokumen.sol ke jaringan tes (misalnya Sepolia).
+- Buka file `src/App.js` dan perbarui variabel contractAddress dengan alamat kontrak yang baru Anda deploy.
+- Pastikan file ABI (`ArsipDokumen.json`) yang ada di dalam `src/artifacts/` adalah ABI dari kontrak yang baru Anda kompilasi.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**5. Jalankan Aplikasi**
+Setelah semua langkah di atas selesai, jalankan perintah berikut untuk memulai aplikasi React.
+```bash
+npm start
+```
+Aplikasi akan terbuka secara otomatis di browser Anda pada alamat `http://localhost:3000`. Pastikan Anda memiliki extension browser Metamask dan terhubung ke jaringan yang sama dengan tempat Anda men-deploy smart contract.
